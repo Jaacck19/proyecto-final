@@ -1,0 +1,62 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* Centrar el recibo */
+.recibo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.recibo {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+}
+/*qrrr*/
+.qr-placeholder {
+    max-width: 300px; /* Ajusta el tamaño del QR */
+    height: auto;
+    display: block;
+    margin: 20px auto; /* Centrado con margen */
+    border: 3px solid #ddd; /* Borde opcional */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 10px; /* Espaciado interno */
+    background: white; /* Fondo blanco */
+}
+
+
+/* Estilo para el temporizador */
+.timer {
+    font-size: 20px;
+    font-weight: bold;
+    color: #5513ee;
+}
+/* barra de arriba */
+.navbar .navbar-brand {
+    font-size: 30px;
+    color: #4013e2; /* Manteniendo color del logo */
+}
+
+.navbar-nav .nav-link {
+    font-size: 15px;
+    color: black;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #5513ee;
+}
+
+.container-fluid {
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}

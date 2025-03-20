@@ -1,0 +1,145 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}/* Logo de CAVE LOCATION de arriba */
+.navbar .navbar-brand {
+    font-size: 30px;
+    font-family: Arial;
+    color: #4013e2;
+}/* Estilos para los enlaces de la barra de navegación */
+.navbar-nav .nav-link {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    color: black;
+}/* Color de los enlaces de la barra de navegación en hover */
+.navbar-nav .nav-link:hover {
+    color: #5513ee;
+
+}/* sombra del borde */
+.container-fluid{
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+
+}/* Primer boton */
+.btn {
+    width: 100%;
+    background-color: #5513ee;
+    border-radius: 30px;
+    border: 2px solid #4013e2;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    padding: 10px;
+}
+.btnn:hover {
+    background-color: rgb(0, 75, 187);
+}
+h2 {
+    text-align: center;
+    color: #5513ee;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+/* Formulario de registro */
+.form {
+    width: 100%;
+    max-width: 400px;
+    background: linear-gradient(to top, #5513ee, rgba(255, 255, 255, 0.8) 30%);
+    padding: 25px;
+    border-radius: 10px;
+    margin: 30px auto;
+}
+.form input {
+    width: 100%;
+    height: 40px;
+    margin-top: 2px;
+    padding-left: 10px;
+    border: none;
+    border-bottom: 1px solid #5513ee;
+    background: transparent;
+    font-size: 15px;
+    color: #000;
+}
+.form .link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.form .link a {
+    color: #5513ee;
+    text-decoration: none;
+}
+.footer {
+    background-color: #000; 
+    color: #fff;
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 40px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Logo */
+.footer-logo img {
+    width: 300px; /* Ajusta el tamaño según sea necesario */
+    margin-top: -180px;
+    margin-left: -200px;
+    border-radius: 20px;
+}
+
+/* Columnas */
+.footer-columns {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.footer-column {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.footer-column h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 8px;
+}
+
+.footer-column ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Redes sociales */
+.footer-social {
+    margin: 2px 1000px 0px 10px;
+    width: 150px;
+}
+
+.footer-social a {
+    font-size: 24px;
+    margin: 0 10px;
+}
+
+/* Derechos reservados */
+.footer-bottom {
+    font-size: 14px;
+    margin-top: 20px;
+    opacity: 0.8;
+}

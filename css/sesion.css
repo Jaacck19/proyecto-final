@@ -1,0 +1,164 @@
+/* Navbar */
+.navbar .navbar-brand {
+    font-size: 30px;
+    color: #4013e2; /* Manteniendo color del logo */
+}
+
+.navbar-nav .nav-link {
+    font-size: 15px;
+    color: black;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #5513ee;
+}
+
+.container-fluid {
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+/* Contenedor principal (lo dejamos con Bootstrap .row) */
+#containerj {
+    margin-top: 40px; /* Separación superior */
+}
+/* Imagen */
+.img-fluid {
+    max-width: 50%;
+    height: auto;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 0px;
+    border: none; /* Elimina bordes */
+}
+
+/* Formulario */
+.form {
+    background: linear-gradient(to top, #5513ee, rgba(255, 255, 255, 0.8) 30%);
+    padding: 25px;
+    border-radius: 10px;
+    text-align: left;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 450px;
+    margin-bottom: 50px;
+}
+
+.form h2 {
+    color: #5513ee;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.form input {
+    width: 100%;
+    height: 40px;
+    margin-top: 5px;
+    padding-left: 10px;
+    border: none;
+    border-bottom: 2px solid #5513ee;
+    background: transparent;
+    font-size: 15px;
+    color: #000;
+}
+
+.btnn {
+    width: 100%;
+    background-color: #5513ee;
+    border-radius: 30px;
+    border: 2px solid #4013e2;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    padding: 10px;
+}
+
+.btnn:hover {
+    background-color: rgb(0, 75, 187);
+}
+
+.enlace {
+    color: #000;
+    text-decoration: none;
+}
+
+.enlace:hover {
+    color: whitesmoke;
+}
+/* Footer */
+.footer {
+    background-color: #000; 
+    color: #fff;
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 40px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Logo */
+.footer .img-fluid {
+    width: 250px; /* Ajusta el tamaño según sea necesario */
+    margin-left: -20px;
+    border-radius: 20px;
+}
+
+/* Columnas */
+.footer-columns {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+   
+    margin-bottom: 20px;
+}
+
+.footer-column {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.footer-column h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 8px;
+}
+
+.footer-column ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Redes sociales */
+.footer-social {
+    display: flex;
+    justify-content: center; 
+    gap: 1px; 
+}
+
+.footer-social .btn-social-icon {
+    font-size: 24px; /* Ajusta el tamaño de los íconos */
+    color: white; /* Color de los íconos en estado normal (blanco) */
+}
+
+.footer-social .btn-social-icon:hover {
+    color: #777; /* Color gris cuando el mouse pasa sobre el ícono */
+}
+/* Derechos reservados */
+.footer-bottom {
+    font-size: 14px;
+    margin-top: 20px;
+    opacity: 0.8;
+}
+
