@@ -40,22 +40,19 @@
 
 <body>
     <div class="container mt-5">
-        <form id="Productosform" class="form border rounded p-4" action="../Controlador/resercontrolador.php"
-            method="post">
+        <form id="Productosform" class="form border rounded p-4" action="reserv.php" method="post">
             <h3 class="text-center mb-4">Formulario de Reserva</h3>
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="txtnombre" class="form-label">Nombre</label>
-                    <input type="text" id="txtname" name="nombre" class="form-control" required
-                        placeholder="Ingrese el nombre del usuario">
+                    <input type="text" id="txtnombre" name="nombre" class="form-control" required placeholder="Ingrese el nombre del usuario">
                 </div>
                 <div class="col-md-6">
-                    <label for="txtapellido" class="form-label">Placa</label>
-                    <input type="text" id="txtplaca" name="placa" class="form-control" required
-                        placeholder="Ingrese la placa">
+                    <label for="txtplaca" class="form-label">Placa</label>
+                    <input type="text" id="txtplaca" name="placa" class="form-control" required placeholder="Ingrese la placa">
                 </div>
                 <div class="col-md-6">
-                    <label for="password" class="form-label">Fecha</label>
+                    <label for="txtFecha" class="form-label">Fecha</label>
                     <input type="date" class="form-control" id="txtFecha" name="fecha_inicio" required>
                 </div>
                 <div class="col-md-6">
@@ -63,15 +60,15 @@
                     <input type="time" id="hora_ingreso" name="fecha_fin" class="form-control">
                 </div>
                 <div class="col-md-6">
-                    <label for="email" class="form-label">Tipo de vehiculo</label>
+                    <label for="tipo" class="form-label">Tipo de vehiculo</label>
                     <select id="tipo" name="tipo_vehiculo" class="form-select">
                         <option value="">Seleccionar</option>
                         <option value="carro">Carro</option>
-                        <option value="moto">moto</option>
+                        <option value="moto">Moto</option>
                     </select>
                 </div>
                 <div class="col-md-6">
-                    <label for="number" class="form-label">Centro comercial</label>
+                    <label for="comercial" class="form-label">Centro comercial</label>
                     <select id="comercial" name="centro_comercial" class="form-select">
                         <option value="">Seleccionar</option>
                         <option value="centro_mayor">Centro Mayor</option>
@@ -80,9 +77,7 @@
                         <option value="plaza_americas">Plaza de las Americas</option>
                     </select>
                 </div>
-                <input type="hidden" name="moto" value="no"> <!-- Ajusta este valor según sea necesario -->
             </div>
-
             <button type="submit" id="btn" class="btn btn-primary w-100">Enviar</button>
         </form>
 
@@ -93,7 +88,6 @@
             durante el primer mes.
         </div>
     </div>
-    </form>
      <!-- Pie de página -->
      <footer class="footer">
         <div class="footer-container">
