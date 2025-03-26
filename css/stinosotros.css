@@ -50,6 +50,7 @@ img.img-fluid {
 .navbar-nav .nav-link {
     font-size: 15px;
     color: black;
+    font-weight: bold;
 }
 
 .navbar-nav .nav-link:hover {

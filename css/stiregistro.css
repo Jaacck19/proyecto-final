@@ -19,11 +19,8 @@ section.my-4 h2 {
     color: #000;
 }
 
-
-/* Fondo suave en tonos morado y azul */
 body {
-    /* Gradiente en tonos pastel de morado y azul */
-    background: linear-gradient(135deg, #e3dcf7 0%, #dce6fa 100%);
+  
     font-family: Arial, sans-serif; /* Para asegurar consistencia */
 }
 
@@ -39,21 +36,17 @@ body {
     font-family: Arial, sans-serif;
     font-size: 15px;
     color: black;
+    font-weight: bold;
 }
 
 /* Color de los enlaces de la barra de navegación en hover */
 .navbar-nav .nav-link:hover {
     color: #5513ee;
 }
-
 /* sombra del borde */
 .container-fluid{
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-    --bs-gutter-x: 1.5rem;
-    --bs-gutter-y: 0;
     width: 100%;
-    padding-right: calc(var(--bs-gutter-x)* 0.);
-    padding-left: calc(var(--bs-gutter-x)* 0.);
     margin-right: auto;
     margin-left: auto;
 }
@@ -124,6 +117,7 @@ h2 {
     background: transparent;
     font-size: 15px;
     color: #000;
+    
 }
 
 .form .link {
@@ -134,8 +128,20 @@ h2 {
 .form .link a {
     color: #5513ee;
     text-decoration: none;
+    
 }
-
+/*carrusel de texto*/
+.carousel-item {
+    text-align: center;
+    color: #f9f9f9;
+    padding: 20px;
+    background-color: #7e13e2; /* Verde claro similar al ejemplo */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.carousel-item p {
+    font-size: 24px; /* Ajusta el tamaño según prefieras */
+}
 /* Footer */
 .footer {
     background-color: #000; 

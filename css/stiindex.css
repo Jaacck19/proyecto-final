@@ -4,7 +4,18 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+/*carrusel de texto*/
+.carousel-item {
+    text-align: center;
+    color: #f9f9f9;
+    padding: 20px;
+    background-color: #7e13e2; /* Verde claro similar al ejemplo */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.carousel-item p {
+    font-size: 24px; /* Ajusta el tamaño según prefieras */
+}
 body {
     font-family: Arial, sans-serif;
     background-color: #f8f9fa; /* Fondo claro */
@@ -19,6 +30,7 @@ body {
 .navbar-nav .nav-link {
     font-size: 15px;
     color: black;
+    font-weight: bold;
 }
 
 .navbar-nav .nav-link:hover {
