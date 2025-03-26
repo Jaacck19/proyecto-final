@@ -51,7 +51,17 @@ class ReservaControlador {
             if ($stmt->execute()) {
                 $stmt->close();
                 $conexion->cerrarConexion();
-                header("Location: ../html/cencomercial.html");
+                echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+                echo "<script>
+                    Swal.fire({
+                        title: 'Cave Location',
+                        text: 'Reserva creada exitosamente.',
+                        icon: 'success',
+                        confirmButtonText: 'Aceptar'
+                    }).then(() => {
+                        window.location.href = '../html/ricibo.html';
+                    });
+                </script>";
                 exit();
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
