@@ -28,10 +28,12 @@ body {
     font-weight: bold;
     transition: 0.3s;
     position: relative;
+    color: #fff; /* Color del texto */
 }
 .step:hover {
-    background-color: #000;
+    background-color: #000000;
     color: transparent;
+    
 }
 .step img {
     display: none;
@@ -40,6 +42,22 @@ body {
 }
 .step:hover img {
     display: block;
+}
+/*boton de registro*/
+.btnn{
+    background-color: #6a02ccaf; /* Color de fondo del botón */
+    color: #fff; /* Color del texto */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+.btnn:hover {
+    background-color: #000000; /* Color de fondo al pasar el mouse */
+    color: #fff; /* Color del texto al pasar el mouse */
 }
 /* barra de arriba */
 .navbar .navbar-brand {
