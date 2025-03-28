@@ -1,21 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
     crearEstacionamiento();
+    actualizarContadores();
 });
 
 const pisos = 3;
 const espaciosPorPiso = 30;
 const letrasPisos = "ABCDEFGHIJ";
 let seleccionados = [];
+let tipoVehiculo = "carro"; // Predeterminado
 
 function crearEstacionamiento() {
-    console.log("Creando estacionamiento...");
     const contenedor = document.getElementById("estacionamiento");
     const selectPiso = document.getElementById("seleccionPiso");
-
-    if (!contenedor || !selectPiso) {
-        console.error("Error: Elementos HTML no encontrados.");
-        return;
-    }
 
     for (let p = 0; p < pisos; p++) {
         let option = document.createElement("option");
@@ -32,55 +28,85 @@ function crearEstacionamiento() {
         titulo.classList.add("text-center", "mb-3");
         titulo.innerText = `Piso ${letrasPisos[p]}`;
 
-        const contador = document.createElement("div");
-        contador.classList.add("alert", "alert-secondary", "text-center");
-        contador.id = `contador-${letrasPisos[p]}`;
-        contador.innerText = `Espacios disponibles: ${espaciosPorPiso} | Ocupados: 0`;
-
         const filaDiv = document.createElement("div");
-        filaDiv.classList.add("fila");
+        filaDiv.classList.add("d-flex", "flex-wrap", "gap-2");
 
         for (let e = 1; e <= espaciosPorPiso; e++) {
             const espacio = document.createElement("div");
-            espacio.classList.add("espacio", "disponible");
+
+            // Alternar entre espacios para carros y motos
+            if (e % 2 === 0) {
+                espacio.classList.add("espacio", "disponible-carro");
+                espacio.dataset.tipo = "carro";
+                espacio.innerHTML = '<i class="fas fa-car"></i>';
+            } else {
+                espacio.classList.add("espacio", "disponible-moto");
+                espacio.dataset.tipo = "moto";
+                espacio.innerHTML = '<i class="fas fa-motorcycle"></i>';
+            }
+
             espacio.dataset.piso = letrasPisos[p];
             espacio.dataset.numero = e;
-            espacio.innerHTML = '<i class="fas fa-car"></i>';
-            espacio.addEventListener("click", () => seleccionarEspacio(espacio));
+
+            espacio.addEventListener("click", () => manejarClicEspacio(espacio));
             filaDiv.appendChild(espacio);
         }
 
         pisoDiv.appendChild(titulo);
-        pisoDiv.appendChild(contador);
         pisoDiv.appendChild(filaDiv);
         contenedor.appendChild(pisoDiv);
     }
-    actualizarContadorGlobal();
+
+    mostrarPiso();
+    actualizarContadores();
 }
 
 function mostrarPiso() {
     const pisoSeleccionado = document.getElementById("seleccionPiso").value;
-    const pisos = document.querySelectorAll(".piso");
+    document.querySelectorAll(".piso").forEach(p => p.style.display = "none");
+    document.getElementById(`piso-${pisoSeleccionado}`).style.display = "block";
+    actualizarContadores();
+}
 
-    pisos.forEach(p => p.style.display = "none");
+function cambiarTipoVehiculo() {
+    tipoVehiculo = document.getElementById("seleccionVehiculo").value;
 
-    if (pisoSeleccionado) {
-        document.getElementById(`piso-${pisoSeleccionado}`).style.display = "block";
+    document.querySelectorAll(".espacio.disponible-carro, .espacio.disponible-moto").forEach(espacio => {
+        espacio.classList.remove("disponible-carro", "disponible-moto");
+        espacio.classList.add(tipoVehiculo === "carro" ? "disponible-carro" : "disponible-moto");
+        espacio.dataset.tipo = tipoVehiculo;
+        espacio.innerHTML = tipoVehiculo === "carro" ? '<i class="fas fa-car"></i>' : '<i class="fas fa-motorcycle"></i>';
+    });
+
+    actualizarContadores();
+}
+
+function manejarClicEspacio(espacio) {
+    if (espacio.classList.contains("ocupado-carro") || espacio.classList.contains("ocupado-moto")) {
+        liberarEspacio(espacio);
+    } else {
+        seleccionarEspacio(espacio);
     }
 }
 
 function seleccionarEspacio(espacio) {
-    if (espacio.classList.contains("ocupado")) return;
-
     if (espacio.classList.contains("seleccionado")) {
+        // Deseleccionar el espacio
         espacio.classList.remove("seleccionado");
-        espacio.innerHTML = '<i class="fas fa-car"></i>';
+        espacio.classList.add(espacio.dataset.tipo === "carro" ? "disponible-carro" : "disponible-moto");
+        espacio.innerHTML = espacio.dataset.tipo === "carro" ? '<i class="fas fa-car"></i>' : '<i class="fas fa-motorcycle"></i>';
         seleccionados = seleccionados.filter(e => e !== espacio);
+        delete espacio.dataset.tipoSeleccionado; // Eliminar el tipo seleccionado temporal
     } else {
+        // Seleccionar el espacio
+        espacio.classList.remove("disponible-carro", "disponible-moto");
         espacio.classList.add("seleccionado");
         espacio.innerHTML = '<i class="fas fa-check-circle"></i>';
+        espacio.dataset.tipoSeleccionado = tipoVehiculo; // Asignar el tipo seleccionado temporal
         seleccionados.push(espacio);
     }
+
+    actualizarContadores();
 }
 
 function confirmarSeleccion() {
@@ -89,42 +115,41 @@ function confirmarSeleccion() {
         return;
     }
 
+    let mensaje = "Has reservado los siguientes espacios:\n";
     seleccionados.forEach(espacio => {
-        espacio.classList.remove("seleccionado", "disponible");
-        espacio.classList.add("ocupado");
-        espacio.innerHTML = '<i class="fas fa-ban"></i>';
+        mensaje += `Piso ${espacio.dataset.piso}, Espacio ${espacio.dataset.numero} (${espacio.dataset.tipoSeleccionado})\n`;
+        espacio.classList.remove("seleccionado", "disponible-carro", "disponible-moto");
+        espacio.classList.add(espacio.dataset.tipoSeleccionado === "carro" ? "ocupado-carro" : "ocupado-moto");
+        espacio.innerHTML = ''; // Elimina cualquier contenido adicional
+        espacio.dataset.tipo = espacio.dataset.tipoSeleccionado; // Actualizar el tipo original
+        delete espacio.dataset.tipoSeleccionado; // Eliminar el tipo seleccionado temporal
     });
 
     seleccionados = [];
-    actualizarContadorGlobal();
-    alert("Espacios confirmados.");
+    actualizarContadores();
+    alert(mensaje);
 }
 
-function actualizarContadorGlobal() {
-    let totalDisponibles = 0;
-    let totalOcupados = 0;
+function liberarEspacio(espacio) {
+    if (!espacio.classList.contains("ocupado-carro") && !espacio.classList.contains("ocupado-moto")) return;
 
-    letrasPisos.split("").forEach(letra => {
-        const espacios = document.querySelectorAll(`#piso-${letra} .espacio`);
-        let disponibles = 0;
-        let ocupados = 0;
+    if (confirm(`¿Quieres liberar el espacio ${espacio.dataset.piso}-${espacio.dataset.numero}?`)) {
+        espacio.classList.remove("ocupado-carro", "ocupado-moto");
+        espacio.classList.add(espacio.dataset.tipo === "carro" ? "disponible-carro" : "disponible-moto");
+        espacio.innerHTML = espacio.dataset.tipo === "carro" ? '<i class="fas fa-car"></i>' : '<i class="fas fa-motorcycle"></i>';
+        actualizarContadores();
+    }
+}
 
-        espacios.forEach(espacio => {
-            if (espacio.classList.contains("disponible")) {
-                disponibles++;
-            } else if (espacio.classList.contains("ocupado")) {
-                ocupados++;
-            }
-        });
+function actualizarContadores() {
+    const pisoSeleccionado = document.getElementById("seleccionPiso").value;
 
-        totalDisponibles += disponibles;
-        totalOcupados += ocupados;
+    // Filtrar los espacios por el piso seleccionado
+    const espaciosEnPiso = document.querySelectorAll(`.piso#piso-${pisoSeleccionado} .espacio`);
+    const disponiblesCarro = Array.from(espaciosEnPiso).filter(e => e.classList.contains("disponible-carro")).length;
+    const disponiblesMoto = Array.from(espaciosEnPiso).filter(e => e.classList.contains("disponible-moto")).length;
 
-        const contadorPiso = document.getElementById(`contador-${letra}`);
-        if (contadorPiso) {
-            contadorPiso.innerText = `Espacios disponibles: ${disponibles} | Ocupados: ${ocupados}`;
-        }
-    });
-
-    document.getElementById("contadorGlobal").innerText = `Espacios disponibles: ${totalDisponibles} | Ocupados: ${totalOcupados}`;
+    // Actualizar los contadores separados
+    document.getElementById("contadorCarros").innerText = `Espacios disponibles para carros: ${disponiblesCarro}`;
+    document.getElementById("contadorMotos").innerText = `Espacios disponibles para motos: ${disponiblesMoto}`;
 }

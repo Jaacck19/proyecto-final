@@ -7,17 +7,23 @@ $database = new Database();
 $db = $database->getConnection();
 $usuario = new Usuario($db);
 
-if (isset($_GET['id'])) {
+$user = null; // Inicializar la variable para evitar errores
+
+if (isset($_GET['id']) && !empty($_GET['id'])) {
     $user_id = $_GET['id'];
     $query = "SELECT * FROM usuarios WHERE id_usuario = :id";
     $stmt = $db->prepare($query);
     $stmt->bindParam(':id', $user_id);
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
     if (!$user) {
-        echo "Usuario no encontrado.";
+        echo "<div class='alert alert-danger text-center'>Usuario no encontrado.</div>";
         exit;
     }
+} else {
+    echo "<div class='alert alert-danger text-center'>ID de usuario no proporcionado.</div>";
+    exit;
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -51,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </script>";
         exit;
     } else {
-        echo "Error al actualizar el usuario.";
+        echo "<div class='alert alert-danger text-center'>Error al actualizar el usuario.</div>";
     }
 }
 ?>
@@ -69,27 +75,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="container mt-5">
     <h2>Actualizar Usuario</h2>
     <form method="POST" action="">
-        <input type="hidden" name="id" value="<?php echo $user['id_usuario']; ?>">
+        <input type="hidden" name="id" value="<?php echo $user ? htmlspecialchars($user['id_usuario']) : ''; ?>">
+
         <div class="mb-3">
             <label class="form-label">Nombre:</label>
-            <input type="text" name="txtnombre" class="form-control" value="<?php echo $user['nombre']; ?>" required>
+            <input type="text" name="txtnombre" class="form-control" 
+                   value="<?php echo $user ? htmlspecialchars($user['nombre']) : ''; ?>" required>
         </div>
+
         <div class="mb-3">
             <label class="form-label">Apellido:</label>
-            <input type="text" name="txtapellido" class="form-control" value="<?php echo $user['apellido']; ?>" required>
+            <input type="text" name="txtapellido" class="form-control" 
+                   value="<?php echo $user ? htmlspecialchars($user['apellido']) : ''; ?>" required>
         </div>
+
         <div class="mb-3">
             <label class="form-label">Email:</label>
-            <input type="email" name="txemail" class="form-control" value="<?php echo $user['email']; ?>" required>
+            <input type="email" name="txemail" class="form-control" 
+                   value="<?php echo $user ? htmlspecialchars($user['email']) : ''; ?>" required>
         </div>
+
         <div class="mb-3">
             <label class="form-label">Contraseña (dejar en blanco para mantener la actual):</label>
             <input type="password" name="txtpassword" class="form-control">
         </div>
+
         <div class="mb-3">
             <label class="form-label">Número Cel:</label>
-            <input type="number" name="txtnumero" class="form-control" value="<?php echo $user['numerocel']; ?>" required>
+            <input type="number" name="txtnumero" class="form-control" 
+                   value="<?php echo $user ? htmlspecialchars($user['numerocel']) : ''; ?>" required>
         </div>
+
         <button type="submit" class="btn btn-primary">Actualizar</button>
     </form>
 </div>

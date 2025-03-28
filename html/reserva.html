@@ -12,64 +12,73 @@
     <script src="../js/reserva.js"></script>
     <link rel="stylesheet" href="../css/reserva.css">
 </head>
-<div class="container-fluid">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand">cave location</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="../index.html">inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../html/recibo.html">Recibo</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../html/nosotros.html">nosotros</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../html/cencomercial.html">centros comerciales</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</div>
 
 <body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand">cave location</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../html/recibo.html">Recibo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../html/nosotros.html">nosotros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../html/cencomercial.html">centros comerciales</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
     <div class="container text-center mt-4">
-        <h2 class="mb-4">Selecciona tu espacio de parqueadero</h2>
-    
-        <div class="mb-3">
-            <label for="seleccionPiso" class="form-label fw-bold">Selecciona un piso:</label>
-            <select id="seleccionPiso" class="form-select w-50 mx-auto" onchange="mostrarPiso()">
-                <option value="">-- Selecciona un piso --</option>
+        <h2 class="mb-4">Visualiza los espacios libres</h2>
+
+        <!-- Contadores separados -->
+        <div class="alert alert-info">
+            <div id="contadorCarros">Espacios disponibles para carros: 0</div>
+            <div id="contadorMotos">Espacios disponibles para motos: 0</div>
+        </div>
+
+        <div class="d-flex align-items-center mb-3">
+            <label class="me-2"><strong>Selecciona un piso:</strong></label>
+            <select id="seleccionPiso" class="form-select me-3" style="width: 150px;" onchange="mostrarPiso()"></select>
+
+            <label class="me-2"><strong>Selecciona tu vehículo:</strong></label>
+            <select id="seleccionVehiculo" class="form-select" style="width: 120px;" onchange="cambiarTipoVehiculo()">
+                <option value="carro">Carro</option>
+                <option value="moto">Moto</option>
             </select>
         </div>
-    
-        <div id="contadorGlobal" class="alert alert-info">
-            Espacios disponibles: 0 | Ocupados: 0
-        </div>
-    
         <div class="contenedor" id="estacionamiento"></div>
-        
+
         <button class="btn btn-primary mt-3" onclick="confirmarSeleccion()">Confirmar Selección</button>
     </div>
+
     <div class="container mt-5">
         <form id="Productosform" class="form border rounded p-4" action="reserv.php" method="post">
             <h3 class="text-center mb-4">Formulario de Reserva</h3>
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="txtnombre" class="form-label">Nombre</label>
-                    <input type="text" id="txtnombre" name="nombre" class="form-control" required placeholder="Ingrese el nombre del usuario">
+                    <input type="text" id="txtnombre" name="nombre" class="form-control" required
+                        placeholder="Ingrese el nombre del usuario">
                 </div>
                 <div class="col-md-6">
                     <label for="txtplaca" class="form-label">Placa</label>
-                    <input type="text" id="txtplaca" name="placa" class="form-control" required placeholder="Ingrese la placa">
+                    <input type="text" id="txtplaca" name="placa" class="form-control" required
+                        placeholder="Ingrese la placa">
                 </div>
                 <div class="col-md-6">
                     <label for="txtFecha" class="form-label">Fecha</label>
@@ -108,12 +117,13 @@
             durante el primer mes.
         </div>
     </div>
-     <!-- Pie de página -->
-     <footer class="footer">
+
+    <!-- Pie de página -->
+    <footer class="footer">
         <div class="footer-container">
             <div class="footer-columns">
                 <div class="col-md-5 d-flex align-items-center justify-content-center">
-                    <img src="img/logo.png" alt="Imagen de parqueo" class="img-fluid">
+                    <img src="../img/logo.png" alt="Imagen de parqueo" class="img-fluid">
                 </div>
                 <div class="footer-column">
                     <h4>Compañía</h4>
@@ -136,20 +146,24 @@
                         <li><a>+573006380123</a></li>
                     </ul>
                 </div>
-            </div> 
+            </div>
         </div>
         <div class="footer-social my-4 d-flex justify-content-center">
-            <a href="https://www.facebook.com" class="btn btn-social-icon btn-facebook" target="_blank"><i class="fab fa-facebook-f"></i>
+            <a href="https://www.facebook.com" class="btn btn-social-icon btn-facebook" target="_blank"><i
+                    class="fab fa-facebook-f"></i>
             </a>
-            <a href="https://www.instagram.com" class="btn btn-social-icon btn-instagram" target="_blank"><i class="fab fa-instagram"></i>
+            <a href="https://www.instagram.com" class="btn btn-social-icon btn-instagram" target="_blank"><i
+                    class="fab fa-instagram"></i>
             </a>
-            <a href="https://www.youtube.com" class="btn btn-social-icon btn-youtube" target="_blank"><i class="fab fa-youtube"></i>
+            <a href="https://www.youtube.com" class="btn btn-social-icon btn-youtube" target="_blank"><i
+                    class="fab fa-youtube"></i>
             </a>
         </div>
-        
+
         <div class="footer-bottom">
             <p>@ 2024 Todos los derechos reservados para Cave Location</p>
         </div>
+    </footer>
 </body>
 
 </html>

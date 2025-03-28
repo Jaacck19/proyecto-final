@@ -1,16 +1,22 @@
 <?php
 session_start();
+if (!isset($_SESSION['admin']) || $_SESSION['admin'] !== true) {
+    header("Location: ../html/reserva.html"); // Si no es admin, lo redirige a la página de reservas
+    exit();
+}
+session_start();
+session_destroy();
+header("Location: ../html/iniciosesion.php");
+exit();
+
+
+session_start();
 require_once('../config/conexion.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Depuración: Ver qué datos llegan desde el formulario
-    var_dump($_POST);
-
-    // Capturar datos y limpiar entrada
     $email = isset($_POST['txemail']) ? trim(htmlspecialchars($_POST['txemail'])) : '';
     $contrasena = isset($_POST['txtpassword']) ? trim($_POST['txtpassword']) : '';
 
-    // Verificar si los campos están vacíos
     if (empty($email) || empty($contrasena)) {
         header('Location: ../html/iniciosesion.php?error=empty_fields');
         exit;
@@ -20,14 +26,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $database = new Database();
         $db = $database->getConnection();
 
-        // Consulta para verificar el usuario
-        $sql = "SELECT id_usuario, email, contrasena FROM usuarios WHERE LOWER(TRIM(email)) = LOWER(TRIM(:email))";
+        // Consulta para verificar el usuario y su rol
+        $sql = "SELECT id_usuario, email, contrasena, rol FROM usuarios WHERE LOWER(TRIM(email)) = LOWER(TRIM(:email))";
         $stmt = $db->prepare($sql);
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
         $user_data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Verificar si el usuario existe
         if ($user_data) {
             // Verificar la contraseña
             if (password_verify($contrasena, $user_data['contrasena'])) {
@@ -35,18 +40,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['user_id'] = $user_data['id_usuario'];
                 $_SESSION['user'] = $user_data['email'];
 
-                header('Location: ../html/reserva.html');
-                exit;
-            } else {
-                header('Location: ../html/reserva.html');
-                exit;
+                if ($user_data['rol'] === 'admin') {
+                    $_SESSION['admin'] = true; // Guardamos que es admin
+                    header('Location: ../html/Principal/Actualiza.php'); // Lo enviamos a la página de actualización
+                    exit;
+                } else {
+                    $_SESSION['admin'] = false; // No es admin
+                    header('Location: ../html/reserva.html'); // Lo enviamos a la reserva
+                    exit;
+                }
             }
-        } else {
-            header('Location: ../html/reserva.html');
-            exit;
         }
+        header('Location: ../html/iniciosesion.php?error=invalid_credentials');
+        exit;
     } catch (PDOException $e) {
-        header('Location: ../html/reserva.html');
+        header('Location: ../html/iniciosesion.php?error=db_error');
         exit;
     }
 }
