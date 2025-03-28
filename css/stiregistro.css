@@ -88,12 +88,12 @@ h2 {
     padding: 20px;
 }
 
-.imagen-container img {
-    height: 5px; 
-    margin-left: 40px;
-    max-width: 350px; /* Ajusta el tamaño de la imagen */
-    height: auto;
-    border-radius: 10px; /* Bordes redondeados */
+.registro-container img {
+    max-width: 50%; /* Ajusta el tamaño máximo de la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+    border-radius: 10px; /* Opcional: añade bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Opcional: añade sombra */
+    margin: 2px -60px; /* Espaciado opcional */
 }
 
 /* Formulario de registro */

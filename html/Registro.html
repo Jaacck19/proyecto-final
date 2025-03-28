@@ -39,35 +39,44 @@
     </nav>
 </div>
 <div class="registro-container">
-    <form id="Productosform" class="form border rounded" action="../Controlador/regcontrolador.php" method="post">
-        <h2 class="mb-4"> Registro </h2>
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <label for="txtnombre" class="form-label">Nombres</label>
-                <input type="text" id="txtnombre" name="txtnombre" class="form-control" required placeholder="Ingresar">
-            </div>
-            <div class="col-md-6">
-                <label for="txtapellido" class="form-label">Apellido</label>
-                <input type="text" id="txtapellido" name="txtapellido" class="form-control" required placeholder="Ingresar">
-            </div>
-            <div class="col-md-6">
-                <label for="email" class="form-label">Correo</label>
-                <input type="email" id="txemail" name="txemail" class="form-control" required placeholder="Ingresar">
-            </div>
-            <div class="col-md-6">
-                <label for="password" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="txpassword" name="txtpassword" placeholder="Ingresar" required>
-            </div>
-            <div class="col-md-6 offset-md-3">
-                <label for="number" class="form-label">Numero cel</label>
-                <input type="number" class="form-control" id="txtnumero" name="txtnumero" placeholder="Ingresar" required>
-            </div>
+    <div class="row">
+        <!-- Columna: Imagen (a la izquierda) -->
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+            <img src="../img/man1.jpg" alt="Imagen de parqueo" class="img-fluid">
         </div>
-        <div id="error-message" style="color: red; display: none;">
-            Las contraseñas no coinciden.
+        <!-- Columna: Formulario (a la derecha) -->
+        <div class="col-md-6">
+            <form id="Productosform" class="form border rounded" action="../Controlador/regcontrolador.php" method="post">
+                <h2 class="mb-4"> Registro </h2>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="txtnombre" class="form-label">Nombres</label>
+                        <input type="text" id="txtnombre" name="txtnombre" class="form-control" required placeholder="Ingresar">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="txtapellido" class="form-label">Apellido</label>
+                        <input type="text" id="txtapellido" name="txtapellido" class="form-control" required placeholder="Ingresar">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="email" class="form-label">Correo</label>
+                        <input type="email" id="txemail" name="txemail" class="form-control" required placeholder="Ingresar">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="txpassword" name="txtpassword" placeholder="Ingresar" required>
+                    </div>
+                    <div class="col-md-6 offset-md-3">
+                        <label for="number" class="form-label">Numero cel</label>
+                        <input type="number" class="form-control" id="txtnumero" name="txtnumero" placeholder="Ingresar" required>
+                    </div>
+                </div>
+                <div id="error-message" style="color: red; display: none;">
+                    Las contraseñas no coinciden.
+                </div>
+                <button type="submit" id="btnn" class="btnn">ENVIAR</button>
+            </form>
         </div>
-        <button type="submit" id="btnn" class="btnn">ENVIAR</button>
-    </form>
+    </div>
 </div>
 <!--carrusel de texto-->
 <div class="container mt-5">
