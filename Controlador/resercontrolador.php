@@ -59,7 +59,7 @@ class ReservaControlador {
                         icon: 'success',
                         confirmButtonText: 'Aceptar'
                     }).then(() => {
-                        window.location.href = '../html/ricibo.html';
+                        window.location.href = '../html/recibo.php?placa=" . urlencode($placa) . "';
                     });
                 </script>";
                 exit();
@@ -76,14 +76,14 @@ class ReservaControlador {
         }
     }
 
-    public function obtenerReserva($id_reservass) {
+    public function obtenerReserva($id_reserva) {
         try {
             $conexion = new Conexion();
             $conn = $conexion->getConexion();
             
-            $sql = "SELECT * FROM reservas WHERE id_reservass = ?";
+            $sql = "SELECT * FROM reservas WHERE id_reserva = ?";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("i", $id_reservass);
+            $stmt->bind_param("i", $id_reserva);
             $stmt->execute();
             
             $resultado = $stmt->get_result();
@@ -95,7 +95,7 @@ class ReservaControlador {
                     $fila['placa'],
                     $fila['centro_comercial'],
                     $fila['tipo_vehiculo'],
-                    $fila['id_reservass']
+                    $fila['id_reserva']
                 );
                 
                 $stmt->close();
@@ -112,15 +112,15 @@ class ReservaControlador {
         }
     }
 
-    public function actualizarReserva($id_reservass, $nombre, $fecha_inicio, $fecha_fin, $placa, $centro_comercial, $tipo_vehiculo, $moto) {
+    public function actualizarReserva($id_reserva, $nombre, $fecha_inicio, $fecha_fin, $placa, $centro_comercial, $tipo_vehiculo, $moto) {
         try {
             $conexion = new Conexion();
             $conn = $conexion->getConexion();
             
             $sql = "UPDATE reservas SET nombre=?, fecha_inicio=?, fecha_fin=?, placa=?, centro_comercial=?, tipo_vehiculo=?
-                    WHERE id_reservass=?";
+                    WHERE id_reserva=?";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ssssssi", $nombre, $fecha_inicio, $fecha_fin, $placa, $centro_comercial, $tipo_vehiculo, $id_reservass);
+            $stmt->bind_param("ssssssi", $nombre, $fecha_inicio, $fecha_fin, $placa, $centro_comercial, $tipo_vehiculo, $id_reserva);
             
             $resultado = $stmt->execute();
             $stmt->close();
@@ -133,14 +133,14 @@ class ReservaControlador {
         }
     }
 
-    public function eliminarReserva($id_reservass) {
+    public function eliminarReserva($id_reserva) {
         try {
             $conexion = new Conexion();
             $conn = $conexion->getConexion();
             
-            $sql = "DELETE FROM reservas WHERE id_reservass=?";
+            $sql = "DELETE FROM reservas WHERE id_reserva=?";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("i", $id_reservass);
+            $stmt->bind_param("i", $id_reserva);
             
             $resultado = $stmt->execute();
             $stmt->close();

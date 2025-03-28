@@ -1,3 +1,43 @@
+<?php
+session_start();
+require_once('../config/conexion.php');
+
+if (!isset($_GET['placa'])) {
+    echo "No se proporcionó una placa.";
+    exit();
+}
+
+$placa = $_GET['placa'];
+
+try {
+    $conexion = new Conexion();
+    $conn = $conexion->getConexion();
+
+    $sql = "SELECT id_reserva, nombre, fecha_inicio, placa, centro_comercial, tipo_vehiculo FROM reservas WHERE placa = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $placa);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+
+    if ($fila = $resultado->fetch_assoc()) {
+        $id_reserva = htmlspecialchars($fila['id_reserva']);
+        $nombre = htmlspecialchars($fila['nombre']);
+        $fecha_inicio = htmlspecialchars($fila['fecha_inicio']);
+        $centro_comercial = htmlspecialchars($fila['centro_comercial']);
+        $tipo_vehiculo = htmlspecialchars($fila['tipo_vehiculo']);
+    } else {
+        echo "No se encontró una reserva con la placa proporcionada.";
+        exit();
+    }
+
+    $stmt->close();
+    $conexion->cerrarConexion();
+} catch (Exception $e) {
+    echo "Error: " . $e->getMessage();
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -25,9 +65,8 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../html/cencomercial.html">Centros Comerciales</a></li>
                         <li class="nav-item"><a class="nav-link" href="../html/nosotros.html">Nosotros</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../html/servicios.html">Servicios</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../html/cencomercial.html">Centros Comerciales</a></li>
                     </ul>
                 </div>
             </div>
@@ -38,17 +77,17 @@
     <div class="container mt-5">
         <div class="card p-4">
             <h2 class="text-center">Recibo de Pago</h2>
-            <p><strong>Nombre:</strong> Juan Pérez</p>
-            <p><strong>Placa:</strong> ABC123</p>
-            <p><strong>Centro Comercial:</strong> Titan Plaza</p>
-            <p><strong>Hora de Ingreso:</strong> 14:30</p>
-            <p><strong>Costo de Reserva:</strong> $2500</p>
+            <p><strong>Nombre:</strong> <?php echo $nombre; ?></p>
+            <p><strong>Placa:</strong> <?php echo $placa; ?></p>
+            <p><strong>Centro Comercial:</strong> <?php echo $centro_comercial; ?></p>
+            <p><strong>Fecha Inicio:</strong> <?php echo $fecha_inicio; ?></p>
+            <p><strong>espacio elegido:</strong> <?php echo $id_reserva; ?> - Espacio Ubicado</p>
+            <p><strong>Tipo de Vehículo:</strong> <?php echo $tipo_vehiculo; ?></p>
 
             <!-- Espacio para código QR -->
             <div class="d-flex justify-content-center my-3">
                 <img src="../img/qr.jpg" alt="Código QR" class="qr-placeholder">
             </div>
-
 
             <!-- Temporizador -->
             <p><strong>Tiempo restante gratis:</strong></p>

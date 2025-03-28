@@ -57,8 +57,7 @@ class Reserva {
         $stmt->bindParam(":tipo_vehiculo", $this->tipo_vehiculo);
 
         if ($stmt->execute()) {
-            header("Location: recibo.html");
-            exit;
+            return true;
         }
 
         return false;

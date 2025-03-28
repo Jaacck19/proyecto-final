@@ -47,7 +47,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 );
 
                 if ($reserva->crearReserva()) {
-                    echo "<script>alert('Reserva creada exitosamente.');</script>";
+                    echo "<script>
+                        alert('Reserva creada exitosamente.');
+                        window.location.href = 'recibo.php?placa=" . urlencode($placa) . "';
+                    </script>";
+                    exit();
                 } else {
                     echo "Error al crear la reserva.";
                 }
