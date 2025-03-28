@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     crearEstacionamiento();
 });
 
-const pisos = 10;
+const pisos = 3;
 const espaciosPorPiso = 30;
 const letrasPisos = "ABCDEFGHIJ";
 let seleccionados = [];
