@@ -63,6 +63,12 @@ class Reserva {
         return false;
     }
 
+    public function eliminarReservasExpiradas() {
+        $query = "DELETE FROM " . $this->table_name . " WHERE TIMESTAMP(fecha_inicio) < NOW()";
+        $stmt = $this->conn->prepare($query);
+        return $stmt->execute();
+    }
+
     // Métodos getter
     public function getNombre() {
         return $this->nombre;

@@ -152,6 +152,18 @@ class ReservaControlador {
             return false;
         }
     }
+
+    public function eliminarReservasExpiradas() {
+        try {
+            $conexion = new Conexion();
+            $conn = $conexion->getConexion();
+            $reserva = new Reserva($conn);
+            $reserva->eliminarReservasExpiradas();
+            $conexion->cerrarConexion();
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
 }
 
 // Procesar el formulario de reserva
@@ -166,4 +178,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_POST['tipo_vehiculo'] ?? null
     );
 }
+
+// Ejecutar eliminación de reservas expiradas al cargar el controlador
+$controlador = new ReservaControlador();
+$controlador->eliminarReservasExpiradas();
 ?>
