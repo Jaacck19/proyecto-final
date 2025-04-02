@@ -73,7 +73,7 @@ section.my-4 p {
 .step {
     width: 180px;
     height: 250px;
-    background-color: #6a02ccaf; 
+    background-color: #000; 
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -86,7 +86,7 @@ section.my-4 p {
     color: #fff; /* Color del texto */
 }
 .step:hover {
-    background-color: #000000;
+    background-color: #6a02ccaf;
     color: transparent;
     
 }
