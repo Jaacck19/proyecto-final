@@ -20,7 +20,7 @@ CREATE TABLE reservas (
     nombre VARCHAR(100) NOT NULL,  -- Campo para almacenar el nombre
     fecha_inicio DATETIME NOT NULL,
     fecha_fin DATETIME,
-    placa VARCHAR(100) UNIQUE NOT NULL,
+    placa VARCHAR(100) NOT NULL,  -- Eliminado UNIQUE
     centro_comercial VARCHAR(100) NOT NULL,
     tipo_vehiculo VARCHAR(100) NOT NULL,
     
@@ -68,4 +68,3 @@ VALUES
     ('ESP086'), ('ESP087'), ('ESP088'), ('ESP089'), ('ESP090'),
     ('ESP091'), ('ESP092'), ('ESP093'), ('ESP094'), ('ESP095'),
     ('ESP096'), ('ESP097'), ('ESP098'), ('ESP099'), ('ESP100');
-    
