@@ -167,9 +167,9 @@ h2 {
 
 /* Logo */
 .footer .img-fluid {
-    width: 3000px; /* Ajusta el tamaño según sea necesario */
+    width: 200px; /* Ajusta el tamaño según sea necesario */
     border-radius: 20px;
-    margin-right: -30px;
+    margin-right: 30px;
 }
 
 /* Columnas */

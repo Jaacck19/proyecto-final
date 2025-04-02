@@ -108,11 +108,10 @@ section.my-4 h2 {
 }
 
 /* Logo */
-.footer-logo img {
-    width: 300px; /* Ajusta el tamaño según sea necesario */
-    margin-top: -180px;
-    margin-left: -200px;
+.footer .img-fluide {
+    width: 280px; /* Ajusta el tamaño según sea necesario */
     border-radius: 20px;
+    margin-right: 100px;
 }
 
 /* Columnas */
@@ -120,8 +119,7 @@ section.my-4 h2 {
     display: flex;
     justify-content: center;
     gap: 50px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .footer-column {
@@ -140,7 +138,7 @@ section.my-4 h2 {
 }
 
 .footer-column ul li {
-    margin-bottom: 8px;
+    margin-bottom: 5px;
 }
 
 .footer-column ul li a {
@@ -150,18 +148,23 @@ section.my-4 h2 {
 
 /* Redes sociales */
 .footer-social {
-    margin: 2px 1000px 0px 10px;
-    width: 150px;
+    display: flex;
+    justify-content: center; 
+    gap: 1px; 
 }
 
-.footer-social a {
-    font-size: 24px;
-    margin: 0 10px;
+.footer-social .btn-social-icon {
+    font-size: 24px; /* Ajusta el tamaño de los íconos */
+    color: white; /* Color de los íconos en estado normal (blanco) */
 }
 
+.footer-social .btn-social-icon:hover {
+    color: #777; /* Color gris cuando el mouse pasa sobre el ícono */
+}
 /* Derechos reservados */
 .footer-bottom {
     font-size: 14px;
     margin-top: 20px;
     opacity: 0.8;
 }
+
