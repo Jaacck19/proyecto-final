@@ -64,9 +64,24 @@ class Reserva {
     }
 
     public function eliminarReservasExpiradas() {
-        $query = "DELETE FROM " . $this->table_name . " WHERE TIMESTAMP(fecha_inicio) < NOW()";
-        $stmt = $this->conn->prepare($query);
-        return $stmt->execute();
+        try {
+            $query = "DELETE FROM " . $this->table_name . " WHERE fecha_fin <= NOW()";
+            $stmt = $this->conn->prepare($query);
+            if ($stmt->execute()) {
+                $filas_afectadas = $stmt->rowCount(); // Verificar cuántas filas se eliminaron
+                if ($filas_afectadas > 0) {
+                    echo "Reservas expiradas eliminadas: $filas_afectadas.";
+                } else {
+                    echo "No se encontraron reservas expiradas para eliminar.";
+                }
+                return true;
+            } else {
+                throw new Exception("Error al ejecutar la consulta para eliminar reservas expiradas.");
+            }
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
     }
 
     // Métodos getter

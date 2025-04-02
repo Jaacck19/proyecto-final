@@ -158,7 +158,11 @@ class ReservaControlador {
             $conexion = new Conexion();
             $conn = $conexion->getConexion();
             $reserva = new Reserva($conn);
-            $reserva->eliminarReservasExpiradas();
+            if ($reserva->eliminarReservasExpiradas()) {
+                echo "Proceso de eliminación de reservas expiradas completado.";
+            } else {
+                throw new Exception("No se pudieron eliminar las reservas expiradas.");
+            }
             $conexion->cerrarConexion();
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage();
@@ -171,7 +175,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $controlador = new ReservaControlador();
     $controlador->crearReserva(
         $_POST['nombre'] ?? null,
-        $_POST['fecha_inicio'] ?? null,
+        $_POST['fecha_inicio'] ?? null, // Ahora incluye fecha y hora
         $_POST['fecha_fin'] ?? null,
         $_POST['placa'] ?? null,
         $_POST['centro_comercial'] ?? null,

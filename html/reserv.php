@@ -6,7 +6,7 @@ require_once('../modelo/reserva.php');
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nombre = $_POST['nombre'] ?? '';
     $placa = $_POST['placa'] ?? '';
-    $fecha_inicio = $_POST['fecha_inicio'] ?? '';
+    $fecha_inicio = $_POST['fecha_inicio'] ?? ''; // Ahora incluye fecha y hora
     $fecha_fin = $_POST['fecha_fin'] ?? '';
     $tipo_vehiculo = $_POST['tipo_vehiculo'] ?? '';
     $centro_comercial = $_POST['centro_comercial'] ?? '';
