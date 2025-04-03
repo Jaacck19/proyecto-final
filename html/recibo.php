@@ -68,7 +68,7 @@ try {
                         <li class="nav-item"><a class="nav-link" href="../html/nosotros.html">Nosotros</a></li>
                         <li class="nav-item"><a class="nav-link" href="../html/cencomercial.html">Centros Comerciales</a></li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../logout.php">Cerrar sesión</a>
+                            <a class="nav-link" href="../php/cerrarsesion.php">Cerrar sesión</a>
                     </li>
                     </ul>
                 </div>
