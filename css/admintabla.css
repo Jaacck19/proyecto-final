@@ -1,0 +1,44 @@
+/* /css/estilos.css */
+.contenedor-usuarios {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+}
+.titulo-usuarios {
+    text-align: center;
+    color: #333;
+}
+
+.tabla-usuarios th {
+    background-color: #6a02ccaf;
+    color: white;
+}
+
+.btn-editar {
+    background-color: #000;
+    color: white;
+    border: none;
+}
+.btn-editar :hover {
+    background-color: #6a02ccaf;
+    color: transparent;
+}
+/* barra de arriba */
+.navbar .navbar-brand {
+    font-size: 30px;
+    color: #4013e2; /* Manteniendo color del logo */
+}
+
+.navbar-nav .nav-link {
+    font-size: 15px;
+    color: black;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #5513ee;
+}
+
+.container-fluid {
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
