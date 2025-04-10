@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 if ($user_data['rol'] === 'admin') {
                     $_SESSION['admin'] = true; // Guardamos que es admin
-                    header('Location: ../html/Principal/Actualiza.php'); // Lo enviamos a la página de actualización
+                    header('Location: ../html/usuarios.php'); // Lo enviamos a la página de actualización
                     exit;
                 } else {
                     $_SESSION['admin'] = false; // No es admin
