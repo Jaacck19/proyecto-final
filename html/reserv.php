@@ -6,7 +6,7 @@ require_once('../modelo/reserva.php');
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nombre = $_POST['nombre'] ?? '';
     $placa = $_POST['placa'] ?? '';
-    $fecha_inicio = $_POST['fecha_inicio'] ?? ''; // Ahora incluye fecha y hora
+    $fecha_inicio = $_POST['fecha_hora_ingreso'] ?? ''; // Cambiado para coincidir con el formulario
     $fecha_fin = $_POST['fecha_fin'] ?? '';
     $tipo_vehiculo = $_POST['tipo_vehiculo'] ?? '';
     $centro_comercial = $_POST['centro_comercial'] ?? '';
@@ -23,18 +23,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($row) {
-            $tipo_vehiculo = $_POST['tipo_vehiculo'] ?? null;
-            if (empty($tipo_vehiculo)) {
-                throw new Exception("El campo 'tipo_vehiculo' no puede estar vacío.");
-            }
-
             $reserva = new Reserva(
                 $db,
-                $_POST['nombre'] ?? null,
-                $_POST['fecha_inicio'] ?? null,
-                $_POST['fecha_fin'] ?? null,
-                $_POST['placa'] ?? null,
-                $_POST['centro_comercial'] ?? null,
+                $nombre,
+                $fecha_inicio,
+                $fecha_fin,
+                $placa,
+                $centro_comercial,
                 $tipo_vehiculo
             );
 
