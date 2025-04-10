@@ -45,33 +45,9 @@
         </nav>
     </div>
 
-    <div class="container text-center mt-4">
-        <h2 class="mb-4">Visualiza los espacios libres</h2>
-
-        <!-- Contadores separados -->
-        <div class="alert alert-info">
-            <div id="contadorCarros">Espacios disponibles para carros: 0</div>
-            <div id="contadorMotos">Espacios disponibles para motos: 0</div>
-        </div>
-
-        <div class="d-flex align-items-center mb-3">
-            <label class="me-2"><strong>Selecciona un piso:</strong></label>
-            <select id="seleccionPiso" class="form-select me-3" style="width: 150px;" onchange="mostrarPiso()"></select>
-
-            <label class="me-2"><strong>Selecciona tu vehículo:</strong></label>
-            <select id="seleccionVehiculo" class="form-select" style="width: 120px;" onchange="cambiarTipoVehiculo()">
-                <option value="carro">Carro</option>
-                <option value="moto">Moto</option>
-            </select>
-        </div>
-        <div class="contenedor" id="estacionamiento"></div>
-
-        <button class="btn btn-primary mt-3" onclick="confirmarSeleccion()">Confirmar Selección</button>
-    </div>
-
     <div class="container mt-5">
         <form id="Productosform" class="form border rounded p-4" action="reserv.php" method="post">
-            <h3 class="text-center mb-4">Formulario de Reserva</h3>
+            <h3 class="text-center mb-4">Reserva</h3>
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="txtnombre" class="form-label">Nombre</label>
@@ -83,32 +59,29 @@
                     <input type="text" id="txtplaca" name="placa" class="form-control" required
                         placeholder="Ingrese la placa">
                 </div>
+                <div class="col-md-12">
+                    <label for="fecha_hora_ingreso" class="form-label">Fecha y hora de ingreso</label>
+                    <input type="datetime-local" class="form-control" id="fecha_hora_ingreso" name="fecha_hora_ingreso" required>
+                </div>                
                 <div class="col-md-6">
-                    <label for="txtFecha" class="form-label">Fecha</label>
-                    <input type="date" class="form-control" id="txtFecha" name="fecha_inicio" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="hora_ingreso" class="form-label">Hora de ingreso</label>
-                    <input type="time" id="hora_ingreso" name="fecha_fin" class="form-control">
-                </div>
-                <div class="col-md-6">
-                    <label for="tipo" class="form-label">Tipo de vehiculo</label>
-                    <select id="tipo" name="tipo_vehiculo" class="form-select">
+                    <label for="tipo" class="form-label">Tipo de vehículo</label>
+                    <select id="tipo" name="tipo_vehiculo" class="form-control">
                         <option value="">Seleccionar</option>
                         <option value="carro">Carro</option>
                         <option value="moto">Moto</option>
                     </select>
                 </div>
+                
                 <div class="col-md-6">
                     <label for="comercial" class="form-label">Centro comercial</label>
-                    <select id="comercial" name="centro_comercial" class="form-select">
+                    <select id="comercial" name="centro_comercial" class="form-control">
                         <option value="">Seleccionar</option>
                         <option value="centro_mayor">Centro Mayor</option>
                         <option value="nqs_mallplaza">NQS Mallplaza</option>
                         <option value="titan_plaza">Titan Plaza</option>
                         <option value="plaza_americas">Plaza de las Americas</option>
                     </select>
-                </div>
+                </div>                
             </div>
             <button type="submit" id="btnn" class="btnn btnn-primary w-100">Enviar</button>
         </form>

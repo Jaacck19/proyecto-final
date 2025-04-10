@@ -46,10 +46,10 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="html/inicios.html">Reservas</a>
+                            <a class="nav-link" href="lista.php">Reservas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="html/Registro.html">Espacios libres</a>
+                            <a class="nav-link" href="espacio.html">Espacios libres</a>
                         </li>
                     </ul>
                 </div>
@@ -89,7 +89,8 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td><?php echo htmlspecialchars($usuario['email']); ?></td>
                         <td><?php echo htmlspecialchars($usuario['numerocel']); ?></td>
                         <td>
-                            <a href="actualizar.php?id=<?php echo $usuario['id_usuario']; ?>" class="btn btn-warning btn-sm btn-editar">Editar</a>
+                        <a href="Principal/actualiza.php? id=<?php echo $usuario['id_usuario']; ?>" class="btn btn-sm btn-editar">Editar</a>
+                        <a href="Principal/Elimina.php?id=<?php echo $usuario['id_usuario']; ?>" class="btn btn-danger btn-sm btn-eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?');">Eliminar</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

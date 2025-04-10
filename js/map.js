@@ -2,13 +2,13 @@
 
 // Datos de ejemplo
 const places = [
-    { name: 'Centro Comercial Santafé', rating: 4.5, address: 'Autopista Norte #185-70', lat: 4.712, lng: -74.072 },
-    { name: 'Centro Comercial Andino', rating: 4.6, address: 'Cra. 11 #82-71', lat: 4.674, lng: -74.050 },
-    { name: 'Centro Comercial Gran Estación', rating: 4.4, address: 'Av. Calle 26 #62-47', lat: 4.625, lng: -74.075 },
-    { name: 'Centro Comercial Mall Plaza', rating: 4.5, address: 'Cra. 15 #124-30', lat: 4.619, lng: -74.101 },
-    { name: 'Centro Comercial Titan Plaza', rating: 4.3, address: 'Av. Boyacá #80-94', lat: 4.625, lng: -74.109 },
-    { name: 'Centro Comercial Plaza de Las Américas', rating: 4.2, address: 'Cra. 71D #6-94 Sur', lat: 4.601, lng: -74.157 },
-    { name: 'Centro Comercial Centro Mayor', rating: 4.3, address: 'Autopista Sur #38A Sur-07', lat: 4.571, lng: -74.130 }
+    { name: 'Centro Comercial Santafé', rating: 4.5, address: 'Autopista Norte #185-70', lat: 4.762930196834603, lng: -74.04531992864224},
+    { name: 'Centro Comercial Andino', rating: 4.6, address: 'Cra. 11 #82-71', lat: 4.666988878507183, lng: -74.05257708188105 },
+    { name: 'Centro Comercial Gran Estación', rating: 4.4, address: 'Av. Calle 26 #62-47', lat: 4.647601056223749, lng: -74.10168438692533},
+    { name: 'Centro Comercial Mall Plaza', rating: 4.5, address: 'Cra. 15 #124-30', lat:  4.617713, lng: -74.085518 },
+    { name: 'Centro Comercial Titan Plaza', rating: 4.3, address: 'Av. Boyacá #80-94', lat: 4.6947187725043165, lng: -74.08609057729966 },
+    { name: 'Centro Comercial Plaza de Las Américas', rating: 4.2, address: 'Cra. 71D #6-94 Sur', lat: 4.619104684953456, lng: -74.13518869316192 },
+    { name: 'Centro Comercial Centro Mayor', rating: 4.3, address: 'Autopista Sur #38A Sur-07', lat: 4.592536501152466, lng: -74.1241226774897 }
 ];
 
 let map;
