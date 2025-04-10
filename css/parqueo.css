@@ -20,20 +20,6 @@
 .container-fluid{
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 
-}/* Primer boton */
-.btnn {
-    width: 100%;
-    background-color: #5513ee;
-    border-radius: 30px;
-    border: 2px solid #4013e2;
-    color: white;
-    font-size: 15px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    padding: 10px;
-}
-.btnn:hover {
-    background-color: rgb(0, 75, 187);
 }
 h2 {
     text-align: center;
@@ -41,34 +27,68 @@ h2 {
     font-size: 22px;
     margin-bottom: 20px;
 }
-/* Formulario de registro */
-.form {
-    width: 100%;
-    max-width: 400px;
-    background: linear-gradient(to top, #5513ee, rgba(255, 255, 255, 0.8) 23%);
-    padding: 258px;
-    border-radius: 10px;
-    margin: 30px auto;
-}
-.form input {
-    width: 100%;
-    height: 40px;
-    margin-top: 2px;
-    padding-left: 10px;
-    border: none;
-    border-bottom: 1px solid #5513ee;
-    background: transparent;
-    font-size: 15px;
-    color: #000;
-}
-.form .link {
+/* el estilo del parqueadero */
+.mb-4 {
     text-align: center;
+    color: #000000;
+    margin-bottom: 20px;
+}
+.piso {
+    display: none;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
 }
 
-.form .link a {
-    color: #5513ee;
-    text-decoration: none;
+.fila {
+    display: grid;
+    grid-template-columns: repeat(10, 60px); /* 10 columnas */
+    gap: 20px; /* Aumentado el espacio entre íconos */
+    justify-content: center;
+}
+
+.espacio {
+    width: 50px;
+    height: 50px;
+    border-left: 2px solid yellow; /* Borde amarillo en el lado izquierdo */
+    border-right: 2px solid yellow; /* Borde amarillo en el lado derecho */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 5px; /* Opcional: bordes redondeados */
+}
+
+.disponible-carro {
+    background-color: #535353;
+    border-left: 2px solid yellow; /* Borde amarillo en el lado izquierdo */
+    border-right: 2px solid yellow; /* Borde amarillo en el lado derecho */
+}
+
+.disponible-moto {
+    background-color: #535353;
+    border-left: 2px solid yellow; /* Borde amarillo en el lado izquierdo */
+    border-right: 2px solid yellow; /* Borde amarillo en el lado derecho */
+}
+
+.ocupado-carro {
+    background-color: #f55555;
+    border-left: 2px solid yellow; /* Borde amarillo en el lado izquierdo */
+    border-right: 2px solid yellow; /* Borde amarillo en el lado derecho */
+}
+
+.ocupado-moto {
+    background-color: #f55555;
+    border-left: 2px solid yellow; /* Borde amarillo en el lado izquierdo */
+    border-right: 2px solid yellow; /* Borde amarillo en el lado derecho */
+}
+
+.seleccionado {
+    background-color: #ffeeba;
+    border-left: 2px solid yellow; /* Borde amarillo en el lado izquierdo */
+    border-right: 2px solid yellow; /* Borde amarillo en el lado derecho */
 }
 .footer {
     background-color: #000; 
