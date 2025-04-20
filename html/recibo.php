@@ -10,28 +10,28 @@ if (!isset($_GET['placa'])) {
 $placa = $_GET['placa'];
 
 try {
-    $conexion = new Conexion();
-    $conn = $conexion->getConexion();
+    $database = new Database();
+    $conn = $database->getConnection();
 
-    $sql = "SELECT id_reserva, nombre, fecha_inicio, placa, centro_comercial, tipo_vehiculo FROM reservas WHERE placa = ?";
+    $sql = "SELECT id_reserva, nombre, fecha_inicio, placa, centro_comercial, tipo_vehiculo 
+            FROM reservas WHERE placa = :placa";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $placa);
+    $stmt->bindParam(':placa', $placa);
     $stmt->execute();
-    $resultado = $stmt->get_result();
 
-    if ($fila = $resultado->fetch_assoc()) {
-        $id_reserva = htmlspecialchars($fila['id_reserva']);
-        $nombre = htmlspecialchars($fila['nombre']);
-        $fecha_inicio = htmlspecialchars($fila['fecha_inicio']);
-        $centro_comercial = htmlspecialchars($fila['centro_comercial']);
-        $tipo_vehiculo = htmlspecialchars($fila['tipo_vehiculo']);
+    $reserva = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($reserva) {
+        $id_reserva = htmlspecialchars($reserva['id_reserva']);
+        $nombre = htmlspecialchars($reserva['nombre']);
+        $fecha_inicio = htmlspecialchars($reserva['fecha_inicio']);
+        $placa = htmlspecialchars($reserva['placa']);
+        $centro_comercial = htmlspecialchars($reserva['centro_comercial']);
+        $tipo_vehiculo = htmlspecialchars($reserva['tipo_vehiculo']);
     } else {
         echo "No se encontró una reserva con la placa proporcionada.";
         exit();
     }
-
-    $stmt->close();
-    $conexion->cerrarConexion();
 } catch (Exception $e) {
     echo "Error: " . $e->getMessage();
     exit();
@@ -40,7 +40,6 @@ try {
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <title>Recibo - Cave Location</title>
@@ -58,7 +57,7 @@ try {
             <div class="container">
                 <a class="navbar-brand">Cave Location</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -69,7 +68,7 @@ try {
                         <li class="nav-item"><a class="nav-link" href="../html/cencomercial.html">Centros Comerciales</a></li>
                         <li class="nav-item">
                             <a class="nav-link" href="../php/cerrarsesion.php">Cerrar sesión</a>
-                    </li>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -84,7 +83,7 @@ try {
             <p><strong>Placa:</strong> <?php echo $placa; ?></p>
             <p><strong>Centro Comercial:</strong> <?php echo $centro_comercial; ?></p>
             <p><strong>Fecha Inicio:</strong> <?php echo $fecha_inicio; ?></p>
-            <p><strong>espacio elegido:</strong> <?php echo $id_reserva; ?> - Espacio Ubicado</p>
+            <p><strong>Espacio elegido:</strong> <?php echo $id_reserva; ?> - Espacio Ubicado</p>
             <p><strong>Tipo de Vehículo:</strong> <?php echo $tipo_vehiculo; ?></p>
 
             <!-- Espacio para código QR -->
@@ -103,5 +102,4 @@ try {
 
     <script src="../js/reciboo.js"></script>
 </body>
-
 </html>
