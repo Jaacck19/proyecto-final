@@ -4,7 +4,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}/* Navbar */
+}.img-small {
+    max-width: 30%; /* Ajusta el tamaño de la imagen */
+    height: auto;   /* Mantiene la proporción de la imagen */
+}
+/* Navbar */
 .navbar .navbar-brand {
     font-size: 30px;
     color: #4013e2; /* Manteniendo color del logo */
