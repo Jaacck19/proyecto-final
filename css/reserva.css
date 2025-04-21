@@ -1,7 +1,17 @@
 * {
     margin: 0px;
     padding: 0px;
-}/* Logo de CAVE LOCATION de arriba */
+}.alert{
+    background-color: #6f42c1; /* Color morado */
+    color: #fff; /* Texto blanco */
+    border: 1px solid #5a3791; /* Borde ligeramente más oscuro */
+    border-radius: 0.5rem; /* Bordes redondeados */
+}
+
+.alert i {
+    color: #000000; /* Ícono blanco */
+}
+/* Logo de CAVE LOCATION de arriba */
 .navbar .navbar-brand {
     font-size: 30px;
     font-family: Arial;
