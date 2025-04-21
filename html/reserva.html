@@ -38,13 +38,35 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../logout.php">Cerrar sesión</a>
-                    </li>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </div>
+    <div class="container text-center mt-4">
+        <h2 class="mb-4">Visualiza los espacios libres</h2>
 
+        <!-- Contadores separados -->
+        <div class="alert alert-info">
+            <div id="contadorCarros">Espacios disponibles para carros: 0</div>
+            <div id="contadorMotos">Espacios disponibles para motos: 0</div>
+        </div>
+
+        <div class="d-flex align-items-center mb-3">
+            <label class="me-2"><strong>Selecciona un piso:</strong></label>
+            <select id="seleccionPiso" class="form-select me-3" style="width: 150px;" onchange="mostrarPiso()"></select>
+
+            <label class="me-2"><strong>Selecciona tu vehículo:</strong></label>
+            <select id="seleccionVehiculo" class="form-select" style="width: 120px;" onchange="cambiarTipoVehiculo()">
+                <option value="carro">Carro</option>
+                <option value="moto">Moto</option>
+            </select>
+        </div>
+        <div class="contenedor" id="estacionamiento"></div>
+
+      
+    </div>
     <div class="container mt-5">
         <form id="Productosform" class="form border rounded p-4" action="reserv.php" method="post">
             <h3 class="text-center mb-4">Reserva</h3>
@@ -57,7 +79,7 @@
                 <div class="col-md-6">
                     <label for="txtplaca" class="form-label">Placa</label>
                     <input type="text" id="txtplaca" name="placa" class="form-control" required
-                        placeholder="Ingrese la placa">
+                    placeholder="Ingrese la placa" maxlength="6" pattern=".{6,6}" title="La placa debe tener exactamente 6 caracteres">
                 </div>
                 <div class="col-md-12">
                     <label for="fecha_hora_ingreso" class="form-label">Fecha y hora de ingreso</label>
@@ -65,7 +87,7 @@
                 </div>                
                 <div class="col-md-6">
                     <label for="tipo" class="form-label">Tipo de vehículo</label>
-                    <select id="tipo" name="tipo_vehiculo" class="form-control">
+                    <select id="tipo" name="tipo_vehiculo" class="form-control" required>
                         <option value="">Seleccionar</option>
                         <option value="carro">Carro</option>
                         <option value="moto">Moto</option>
@@ -74,7 +96,7 @@
                 
                 <div class="col-md-6">
                     <label for="comercial" class="form-label">Centro comercial</label>
-                    <select id="comercial" name="centro_comercial" class="form-control">
+                    <select id="comercial" name="centro_comercial" class="form-control" required>
                         <option value="">Seleccionar</option>
                         <option value="centro_mayor">Centro Mayor</option>
                         <option value="nqs_mallplaza">NQS Mallplaza</option>

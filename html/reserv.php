@@ -1,5 +1,8 @@
 <?php
 session_start();
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
 require_once('../config/conexion.php');
 require_once('../modelo/reserva.php');
 
@@ -10,6 +13,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $fecha_fin = $_POST['fecha_fin'] ?? '';
     $tipo_vehiculo = $_POST['tipo_vehiculo'] ?? '';
     $centro_comercial = $_POST['centro_comercial'] ?? '';
+
+    // Validar que la placa tenga exactamente 6 caracteres
+    if (strlen($placa) !== 6) {
+        echo "La placa debe tener exactamente 6 caracteres.";
+        exit();
+    }
 
     if (!empty($nombre) && !empty($placa) && !empty($fecha_inicio) && !empty($tipo_vehiculo) && !empty($centro_comercial)) {
         $database = new Database();
@@ -34,10 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             );
 
             if ($reserva->crearReserva()) {
-                echo "<script>
-                    alert('Reserva creada exitosamente.');
-                    window.location.href = 'recibo.php?placa=" . urlencode($placa) . "';
-                </script>";
+                header("Location: recibo.php?placa=" . urlencode($placa));
                 exit();
             } else {
                 echo "Error al crear la reserva.";

@@ -90,6 +90,12 @@ h2 {
     border-left: 2px solid yellow; /* Borde amarillo en el lado izquierdo */
     border-right: 2px solid yellow; /* Borde amarillo en el lado derecho */
 }
+.alert {
+    background-color: #6f42c1; /* Color morado */
+    color: #fff; /* Texto blanco */
+    border: 1px solid #5a3791; /* Borde ligeramente más oscuro */
+    border-radius: 0.5rem; /* Bordes redondeados */
+}
 .footer {
     background-color: #000; 
     color: #fff;

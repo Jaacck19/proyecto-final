@@ -1,40 +1,23 @@
-CREATE DATABASE reserva;
+CREATE DATABASE IF NOT EXISTS reserva;
 USE reserva;
 
+-- Tabla usuarios con contraseñas hasheadas
 CREATE TABLE usuarios (
     id_usuario INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(100) NOT NULL UNIQUE,  -- Hacemos el nombre único, si se requiere
+    nombre VARCHAR(100) NOT NULL,
     apellido VARCHAR(50) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
-    contrasena VARCHAR(100) NOT NULL,  -- Cambiado de "contraseña" a "contrasena"
-    numerocel VARCHAR(50)
+    contrasena VARCHAR(255) NOT NULL, 
+    numerocel VARCHAR(50),
+    rol VARCHAR(20) NOT NULL DEFAULT 'usuario'
 );
-
+-- Tabla espacios de parqueo
 CREATE TABLE espacios_parqueo (
     id_espacio INT PRIMARY KEY AUTO_INCREMENT,
     numero_espacio VARCHAR(10) UNIQUE NOT NULL
 );
 
-CREATE TABLE reservas (
-    id_reserva INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(100) NOT NULL,  -- Campo para almacenar el nombre
-    fecha_inicio DATETIME NOT NULL,
-    fecha_fin DATETIME,
-    placa VARCHAR(100) NOT NULL,  -- Eliminado UNIQUE
-    centro_comercial VARCHAR(100) NOT NULL,
-    tipo_vehiculo VARCHAR(100) NOT NULL,
-    
-    -- Clave foránea adicional con nombre (referencia a 'nombre' en la tabla usuarios)
-    CONSTRAINT fk_nombre_usuario_reserva FOREIGN KEY (nombre) REFERENCES usuarios(nombre) ON DELETE CASCADE
-);
-
-CREATE TABLE precios (
-    id_precio INT PRIMARY KEY AUTO_INCREMENT,
-    tarifa_hora DECIMAL(10,2) NOT NULL,  -- Reducido a DECIMAL(10,2) para precisión estándar
-    tarifa_dia DECIMAL(10,2) NOT NULL,
-    reserva DECIMAL(10,2) NOT NULL
-);
-
+-- Tabla centro comercial
 CREATE TABLE centro_comercial (
     id_centro_comercial INT PRIMARY KEY AUTO_INCREMENT,
     nombrecentro VARCHAR(100) NOT NULL,
@@ -45,26 +28,33 @@ CREATE TABLE centro_comercial (
     email VARCHAR(100)
 );
 
--- Insertar 100 espacios de parqueo
+-- Tabla reservas modificada para usar id_usuario en lugar de nombre
+CREATE TABLE reservas (
+    id_reserva INT PRIMARY KEY AUTO_INCREMENT,
+    id_usuario INT NOT NULL,
+	nombre VARCHAR(100) NOT NULL,
+    fecha_inicio DATETIME NOT NULL,
+    fecha_fin DATETIME,
+    placa VARCHAR(100) NOT NULL,
+    centro_comercial VARCHAR(100) NOT NULL,
+    tipo_vehiculo VARCHAR(100) NOT NULL
+);
+
+-- Tabla precios
+CREATE TABLE precios (
+    id_precio INT PRIMARY KEY AUTO_INCREMENT,
+    tarifa_hora DECIMAL(10,2) NOT NULL,
+    tarifa_dia DECIMAL(10,2) NOT NULL,
+    reserva DECIMAL(10,2) NOT NULL
+);
+
+-- Insertar espacios de parqueo (solo los primeros 10 para ejemplo)
 INSERT INTO espacios_parqueo (numero_espacio)
 VALUES 
     ('ESP001'), ('ESP002'), ('ESP003'), ('ESP004'), ('ESP005'),
-    ('ESP006'), ('ESP007'), ('ESP008'), ('ESP009'), ('ESP010'),
-    ('ESP011'), ('ESP012'), ('ESP013'), ('ESP014'), ('ESP015'),
-    ('ESP016'), ('ESP017'), ('ESP018'), ('ESP019'), ('ESP020'),
-    ('ESP021'), ('ESP022'), ('ESP023'), ('ESP024'), ('ESP025'),
-    ('ESP026'), ('ESP027'), ('ESP028'), ('ESP029'), ('ESP030'),
-    ('ESP031'), ('ESP032'), ('ESP033'), ('ESP034'), ('ESP035'),
-    ('ESP036'), ('ESP037'), ('ESP038'), ('ESP039'), ('ESP040'),
-    ('ESP041'), ('ESP042'), ('ESP043'), ('ESP044'), ('ESP045'),
-    ('ESP046'), ('ESP047'), ('ESP048'), ('ESP049'), ('ESP050'),
-    ('ESP051'), ('ESP052'), ('ESP053'), ('ESP054'), ('ESP055'),
-    ('ESP056'), ('ESP057'), ('ESP058'), ('ESP059'), ('ESP060'),
-    ('ESP061'), ('ESP062'), ('ESP063'), ('ESP064'), ('ESP065'),
-    ('ESP066'), ('ESP067'), ('ESP068'), ('ESP069'), ('ESP070'),
-    ('ESP071'), ('ESP072'), ('ESP073'), ('ESP074'), ('ESP075'),
-    ('ESP076'), ('ESP077'), ('ESP078'), ('ESP079'), ('ESP080'),
-    ('ESP081'), ('ESP082'), ('ESP083'), ('ESP084'), ('ESP085'),
-    ('ESP086'), ('ESP087'), ('ESP088'), ('ESP089'), ('ESP090'),
-    ('ESP091'), ('ESP092'), ('ESP093'), ('ESP094'), ('ESP095'),
-    ('ESP096'), ('ESP097'), ('ESP098'), ('ESP099'), ('ESP100');
+    ('ESP006'), ('ESP007'), ('ESP008'), ('ESP009'), ('ESP010');
+
+-- Insertar usuario administrador con contraseña hasheada
+-- La contraseña es 'admin123' hasheada
+INSERT INTO usuarios (nombre, apellido, email, contrasena, numerocel, rol)
+VALUES ('Admin', 'Sistema', 'admin@sistema.com', '$2y$10$mV2BEVSglWpBohjGUvfZhu.CJ0Jk7nN12M.CHB7FpVdlT9O9zaACu', '1234567890', 'admin');
